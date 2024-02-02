@@ -1,6 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Options;
-using WordService.Core.Config;
 using WordService.Core.Domain.Interfaces;
 
 namespace WordService.Infrastructure;
@@ -8,9 +6,30 @@ namespace WordService.Infrastructure;
 public sealed class Database : IDatabase {
     private readonly SqlConnection _connection;
 
-    public Database(IOptions<DatabaseSettings> dbOptions) {
-        _connection = new (dbOptions.Value.ConnectionString);
+    private static Database _instance;
+    private static readonly object _lock = new object();
+
+    private Database() {
+        _connection = new ("Server=localhost;User Id=sa;Password=SuperSecret7!;Encrypt=false;");
         _connection.Open();
+    }
+
+    public static Database Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new Database();
+                    }
+                }
+            }
+            return _instance;
+        }
     }
 
     // key is the id of the document, the value is number of search words in the document

@@ -6,6 +6,10 @@ namespace WordService.Controllers;
 public class WordController : BaseController {
     private readonly Database _database;
 
+    public WordController(Database database) {
+        _database = database;
+    }
+
     [HttpGet]
     public Dictionary<string, int> Get()
     {

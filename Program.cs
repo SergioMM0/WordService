@@ -1,5 +1,7 @@
 ﻿using WordService.Application.Extensions;
 using WordService.Core.Config;
+using WordService.Core.Domain.Interfaces;
+using WordService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +13,10 @@ builder.Services.AddControllers();
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
 
 // Add all services and repositories
-builder.Services.AddServicesAndRepositories();
+
+//builder.Services.AddSingleton<IDatabase, Database>();
+
+//builder.Services.AddServicesAndRepositories();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();

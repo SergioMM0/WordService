@@ -11,7 +11,7 @@ public static class ServiceAndRepositoryExtension {
     /// Adds the services and repositories.
     /// </summary>
     public static IServiceCollection AddServicesAndRepositories(this IServiceCollection services) {
-        services.AddSingleton<IDatabase, Database>();
+        //services.AddSingleton<IDatabase, Database>();
         
         return services;
     }
