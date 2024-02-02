@@ -5,7 +5,7 @@ using WordService.Core.Domain.Interfaces;
 
 namespace WordService.Infrastructure;
 
-sealed class Database : IDatabase {
+public sealed class Database : IDatabase {
     private readonly SqlConnection _connection;
 
     public Database(IOptions<DatabaseSettings> dbOptions) {
