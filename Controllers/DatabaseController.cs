@@ -1,5 +1,5 @@
 ﻿namespace WordService.Controllers; 
 
-public class DatabaseController {
+public class DatabaseController : BaseController {
     
 }

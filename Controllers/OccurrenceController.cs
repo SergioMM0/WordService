@@ -1,5 +1,5 @@
 ﻿namespace WordService.Controllers; 
 
-public class OccurrenceController {
+public class OccurrenceController : BaseController {
     
 }

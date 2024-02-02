@@ -1,5 +1,7 @@
-﻿namespace WordService.Controllers; 
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class DocumentController {
+namespace WordService.Controllers; 
+
+public class DocumentController : BaseController {
     
 }
