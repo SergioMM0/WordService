@@ -4,21 +4,16 @@ using WordService.Infrastructure;
 namespace WordService.Controllers; 
 
 public class DocumentController : BaseController {
-    private Database database;
+    private Database _database;
 
     public DocumentController(Database database) {
-        this.database = database;
+        this._database = database;
     }
-
-    /// <summary>
-    /// Retrieves the Document by Id
-    /// </summary>
-    /// <param name="docIds"></param>
-    /// <returns></returns>
+    
     [HttpGet("GetByDocIds")]
-    public async Task<List<string>> GetByDocIds([FromQuery] List<int> docIds)
+    public List<string> GetByDocIds([FromQuery] List<int> docIds)
     {
-        return await database.GetDocDetails(docIds);
+        return _database.GetDocDetails(docIds);
     }
     
     /// <summary>
@@ -27,9 +22,9 @@ public class DocumentController : BaseController {
     /// <param name="wordIds"></param>
     /// <returns></returns>
     [HttpGet("GetByWordIds")]
-    public async Task<Dictionary<int, int>> GetByWordIds([FromQuery] List<int> wordIds)
+    public Dictionary<int, int> GetByWordIds([FromQuery] List<int> wordIds)
     {
-        return await database.GetDocuments(wordIds);
+        return _database.GetDocuments(wordIds);
     }
 
     /// <summary>
@@ -38,8 +33,8 @@ public class DocumentController : BaseController {
     /// <param name="id"></param>
     /// <param name="url"></param>
     [HttpPost]
-    public async Task Post(int id, string url)
+    public void Post(int id, string url)
     {
-        await database.InsertDocument(id, url);
+         _database.InsertDocument(id, url);
     }
 }
