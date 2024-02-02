@@ -14,7 +14,7 @@ public sealed class Database : IDatabase {
     }
 
     // key is the id of the document, the value is number of search words in the document
-    public async Task<Dictionary<int, int>> GetDocuments(List<int> wordIds) {
+    public  Dictionary<int, int> GetDocuments(List<int> wordIds) {
         var res = new Dictionary<int, int>();
 
         var sql = @"SELECT docId, COUNT(wordId) AS count FROM Occurrences WHERE wordId IN " + AsString(wordIds) +
@@ -39,7 +39,7 @@ public sealed class Database : IDatabase {
         return string.Concat("(", string.Join(',', x.Select(i => i.ToString())), ")");
     }
 
-    public async Task<Dictionary<string, int>> GetAllWords() {
+    public Dictionary<string, int> GetAllWords() {
         var res = new Dictionary<string, int>();
 
         var selectCmd = _connection.CreateCommand();
@@ -57,7 +57,7 @@ public sealed class Database : IDatabase {
         return res;
     }
 
-    public async Task<List<string>> GetDocDetails(List<int> docIds) {
+    public List<string> GetDocDetails(List<int> docIds) {
         var res = new List<string>();
 
         var selectCmd = _connection.CreateCommand();
@@ -75,7 +75,7 @@ public sealed class Database : IDatabase {
         return res;
     }
 
-    public async Task InsertDocument(int id, string url) {
+    public void InsertDocument(int id, string url) {
         var insertCmd = _connection.CreateCommand();
         insertCmd.CommandText = "INSERT INTO Documents(id, url) VALUES(@id,@url)";
 
