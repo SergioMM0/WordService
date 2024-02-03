@@ -5,7 +5,7 @@ namespace WordService.Infrastructure;
 
 public sealed class Database : IDatabase {
     private readonly SqlConnection _connection;
-
+    
     private static Database _instance;
     private static readonly object _lock = new object();
 

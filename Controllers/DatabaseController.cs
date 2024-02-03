@@ -4,12 +4,8 @@ using WordService.Infrastructure;
 namespace WordService.Controllers; 
 
 public class DatabaseController : BaseController {
-    private readonly Database _database;
+    private readonly Database _database = Database.Instance;
 
-    public DatabaseController(Database database) {
-        _database = database;
-    }
-    
     [HttpDelete]
     public void Delete()
     {

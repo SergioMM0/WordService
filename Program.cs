@@ -1,7 +1,4 @@
-﻿using WordService.Application.Extensions;
-using WordService.Core.Config;
-using WordService.Core.Domain.Interfaces;
-using WordService.Infrastructure;
+﻿using WordService.Core.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
