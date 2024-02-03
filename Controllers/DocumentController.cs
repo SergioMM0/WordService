@@ -4,12 +4,8 @@ using WordService.Infrastructure;
 namespace WordService.Controllers; 
 
 public class DocumentController : BaseController {
-    private Database _database;
+    private Database _database = Database.Instance;
 
-    public DocumentController(Database database) {
-        this._database = database;
-    }
-    
     [HttpGet("GetByDocIds")]
     public List<string> GetByDocIds([FromQuery] List<int> docIds)
     {
